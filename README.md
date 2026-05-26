@@ -1,17 +1,19 @@
 <div align="center">
 
-<img src="docs/icon.png" width="160" alt="Lights icon">
+<img src="docs/icon.png" width="140" alt="Lights icon">
 
 # Lights
 
 **A floating traffic light for your AI coding assistant.**
 **给 AI 编程助手的浮动交通灯。**
 
+<img src="docs/demo.gif" width="100" alt="Lights demo">
+
 [English](#english) · [中文](#中文)
 
 ### ⬇️ [Download Lights v0.1.0 for macOS](https://github.com/fengyiqicoder/Lights/releases/latest/download/Lights-v0.1.0.zip)
 
-*macOS 14+ · Developer-ID signed · ~1.5 MB*
+*macOS 14+ · Developer-ID signed · Notarized by Apple · ~1.5 MB*
 
 </div>
 
@@ -82,6 +84,7 @@ curl localhost:9876/permission  # → yellow
 curl localhost:9876/idle        # → green
 curl localhost:9876/off         # → all off
 curl localhost:9876/status      # → query current state
+curl localhost:9876/snapshot    # → write a PNG of the current window to /tmp, returns path
 ```
 
 ### How it works
@@ -199,6 +202,7 @@ curl localhost:9876/permission  # → 黄
 curl localhost:9876/idle        # → 绿
 curl localhost:9876/off         # → 全灭
 curl localhost:9876/status      # → 查询当前状态
+curl localhost:9876/snapshot    # → 把当前窗口画面存成 PNG 到 /tmp，返回路径
 ```
 
 ### 工作原理

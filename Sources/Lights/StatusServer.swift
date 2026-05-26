@@ -1,5 +1,6 @@
 import Foundation
 import Network
+import AppKit
 
 extension Notification.Name {
     static let lightsStateChange = Notification.Name("LightsStateChange")
@@ -90,11 +91,40 @@ final class StatusServer {
             return setState(.off)
         case "/status":
             return Response(status: "200 OK", body: currentState.rawValue)
+        case "/snapshot":
+            return Response(status: "200 OK", body: snapshotPNG() ?? "error")
         case "/", "/health":
             return Response(status: "200 OK", body: "lights ok")
         default:
             return Response(status: "404 Not Found", body: "unknown route")
         }
+    }
+
+    /// Render the floating window's content view to a PNG and write to /tmp.
+    /// Returns the file path on success. Used for demo / marketing capture
+    /// without requiring system Screen Recording permission.
+    private func snapshotPNG() -> String? {
+        var resultPath: String?
+        let group = DispatchGroup()
+        group.enter()
+        DispatchQueue.main.async {
+            defer { group.leave() }
+            guard let view = NSApp.windows
+                    .first(where: { $0 is FloatingWindow })?.contentView else { return }
+            let bounds = view.bounds
+            guard let rep = view.bitmapImageRepForCachingDisplay(in: bounds) else { return }
+            view.cacheDisplay(in: bounds, to: rep)
+            guard let data = rep.representation(using: .png, properties: [:]) else { return }
+            let path = "/tmp/lights-snapshot-\(Int(Date().timeIntervalSince1970 * 1000)).png"
+            do {
+                try data.write(to: URL(fileURLWithPath: path))
+                resultPath = path
+            } catch {
+                NSLog("[Lights] snapshot write failed: \(error)")
+            }
+        }
+        _ = group.wait(timeout: .now() + 1.0)
+        return resultPath
     }
 
     private func setState(_ state: LightsState) -> Response {
