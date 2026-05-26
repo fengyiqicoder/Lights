@@ -15,8 +15,23 @@
 
 </div>
 
-> **First launch / 第一次打开:** macOS Gatekeeper will block the signed-but-not-yet-notarized build. **Right-click the app → "Open" → "Open" again** (one-time, per macOS policy). After that it launches normally.
-> macOS Gatekeeper 会拦一下还没 notarize 的版本。**右键 → 打开 → 再点一次"打开"**，之后就正常了。
+> **First launch / 第一次打开:** v0.1.0 is signed (Developer ID) but **not yet notarized**, so macOS Gatekeeper will block it on first launch with *"Apple cannot verify…"*. To open it:
+>
+> 1. Double-click the app once — Gatekeeper blocks it (click **Done**, not **Move to Trash**)
+> 2. Open **System Settings → Privacy & Security**
+> 3. Scroll down — you'll see *"Lights was blocked from use…"* with an **Open Anyway** button → click it
+> 4. Double-click the app again → confirmation dialog → **Open**
+>
+> One-time per app. Notarization is planned for v0.2 which will remove this step.
+>
+> v0.1.0 是签了名（Developer ID Yiqi Feng）的，但还没 notarize，所以 macOS 首次会拦。打开步骤：
+>
+> 1. 双击 app —— Gatekeeper 弹窗点 **完成**（不要点"移到废纸篓"）
+> 2. 打开 **系统设置 → 隐私与安全性**
+> 3. 往下滚找到 *"已阻止使用 Lights..."* → 点 **仍要打开**
+> 4. 再双击 app → 确认弹窗 → **打开**
+>
+> 一个 app 只需要做一次。v0.2 会做 notarize 彻底消除这一步。
 
 ---
 
