@@ -9,7 +9,14 @@
 
 [English](#english) · [中文](#中文)
 
+### ⬇️ [Download Lights v0.1.0 for macOS](https://github.com/fengyiqicoder/Lights/releases/latest/download/Lights-v0.1.0.zip)
+
+*macOS 14+ · Developer-ID signed · ~1.5 MB*
+
 </div>
+
+> **First launch / 第一次打开:** macOS Gatekeeper will block the signed-but-not-yet-notarized build. **Right-click the app → "Open" → "Open" again** (one-time, per macOS policy). After that it launches normally.
+> macOS Gatekeeper 会拦一下还没 notarize 的版本。**右键 → 打开 → 再点一次"打开"**，之后就正常了。
 
 ---
 

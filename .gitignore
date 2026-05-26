@@ -9,6 +9,9 @@ Resources/AppIcon.icns
 # Built app bundle
 Lights.app/
 
+# Release artifacts (uploaded to GitHub Releases, not committed)
+dist/
+
 # macOS
 .DS_Store
 
